@@ -1,0 +1,42 @@
+﻿@model IEnumerable< FirstAppWithDapper.ViewModels.ProductVM>;
+@{ 
+    ViewData["Title"] = "Product List";
+}
+<div class="card m-3">
+    <div class="card-header">
+        Product List
+    </div>
+    <div class="card-body">
+        <a class="btn btn-outline-primary mb-2" asp-action="Create">Create Product</a>
+        <a class="btn btn-outline-primary mb-2" asp-action="BulkInsert">Bulk Insert</a>
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Product Name</th>
+                    <th>Category</th>
+                    <th>Supplier</th>
+                    <th>Price</th>
+                    <th>Programs</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.ProductId</td>
+                        <td>@item.ProductName</td>
+                        <td>@item.CategoryName</td>
+                        <td>@item.SupplierName</td>
+                        <td>@item.UnitPrice</td>
+                        <td>
+                            <a class="btn btn-sm btn-outline-warning" asp-action="Edit" asp-route-id="@item.ProductId">Edit</a>
+                            <a class="btn btn-sm btn-outline-danger" asp-action="Delete" asp-route-id="@item.ProductId" onclick="confirm('Are You Sure You Want to Delete?')">Delete</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
